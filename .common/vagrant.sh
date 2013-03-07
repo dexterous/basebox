@@ -1,13 +1,10 @@
 #!/bin/bash -eux
 
-mkdir /tmp/vbox
-VER=$(cat /home/vagrant/.vbox_version)
-wget http://download.virtualbox.org/virtualbox/$VER/VBoxGuestAdditions_$VER.iso
-mount -o loop VBoxGuestAdditions_$VER.iso /tmp/vbox
-sh /tmp/vbox/VBoxLinuxAdditions.run
-umount /tmp/vbox
-rmdir /tmp/vbox
-rm *.iso
+mkdir /mnt/vboxadd
+mount /dev/sr1 /mnt/vboxadd
+sh /mnt/vboxadd/VBoxLinuxAdditions.run
+umount /mnt/vboxadd
+rmdir /mnt/vboxadd
 
 mkdir /home/vagrant/.ssh
 wget --no-check-certificate \
